@@ -17,7 +17,7 @@ const validateDetails = (userRegistration) => {
         errors.lname = 'Last name required'
     }
 
-    if (!userRegistration.dov) {
+    if (!userRegistration.dob) {
         errors.dob = 'Date of birth Required'
     }
 

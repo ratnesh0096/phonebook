@@ -4,7 +4,6 @@ import validateDetails from './validateDetails';
 
 const Details = ({allContacts, setContacts}) => {
     const { handleSubmit, handleInput, userRegistration, isValid, isSubmitted } = useDetails(validateDetails, allContacts, setContacts);
-    console.log("hello");
     return (
         <>
             <form onSubmit={handleSubmit}>

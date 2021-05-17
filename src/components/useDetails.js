@@ -1,6 +1,6 @@
 import { useState } from "react";
 import validateDetails from "./validateDetails";
-const useDetails = (validateDetails,allContacts, setContacts) => {
+const useDetails = (validateDetails, allContacts, setContacts) => {
     const [userRegistration, setUserRegistration] = useState(
         {
             phone: "",
@@ -12,31 +12,41 @@ const useDetails = (validateDetails,allContacts, setContacts) => {
             designation: ""
         }
     );
-    const [isValid, setValidation] = useState({})
-    const [isSubmitted, setSubmisson] = useState(false);
+    const [isValid, setValidation] = useState(
+        {
+            phone: "",
+            fname: "",
+            lname: "",
+            dob: "",
+            occupation: "",
+            email: "",
+            designation: ""
+        }
+    );
+    // const [isSubmitted, setSubmisson] = useState(false);
     const handleInput = (e) => {
         const { name, value } = e.target;
         setUserRegistration({ ...userRegistration, [name]: value })
+        setValidation(validateDetails(userRegistration));
         // console.log(e.target.value);
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        setValidation(validateDetails(userRegistration));
-        if (!isValid /*Object.keys(isValid).length === 0*/) { 
-            setSubmisson(true);
-            const copiedContacts=[...allContacts];
-            copiedContacts.push(userRegistration); 
+        if (Object.keys(isValid).length === 0) {
+            // setSubmisson(true);
+            const copiedContacts = [...allContacts];
+            copiedContacts.push(userRegistration);
             setContacts(copiedContacts);
-            setValidation({});
+            // setValidation({});
             console.log("here");
 
         }
-        else setSubmisson(false);
+        // else setSubmisson(false);
 
-
-        console.log(allContacts);
+        console.log(isValid);
+        console.log(Object.keys(isValid).length);
     }
-    return { handleSubmit, handleInput, userRegistration, isValid, isSubmitted };
+    return { handleSubmit, handleInput, userRegistration, isValid /*, isSubmitted */ };
 };
 
 export default useDetails;
