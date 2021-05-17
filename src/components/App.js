@@ -13,6 +13,7 @@ import {
 
 function App() {
   const [allContacts, setContacts] = useState([]);
+  const [favourite, setFavourite] = useState([]);
   return (
     <>
       <h1>Add Contact</h1>
@@ -31,10 +32,10 @@ function App() {
               <Details allContacts={allContacts} setContacts={setContacts} />
             </Route>
             <Route path="/all" exact>
-              <AllContacts allContacts={allContacts} />
+              <AllContacts allContacts={allContacts} favourite={favourite} setFavourite={setFavourite} />
             </Route>
             <Route path="/favourite" exact>
-              <Favourite />
+              <Favourite favourite={favourite} />
             </Route>
             <Route path="/recent" exact>
               <Recent />

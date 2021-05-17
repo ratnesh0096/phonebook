@@ -2,7 +2,8 @@ import React from 'react';
 import useDetails from './useDetails';
 import validateDetails from './validateDetails';
 
-const Details = ({allContacts, setContacts}) => {
+const Details = ({ allContacts, setContacts }) => {
+    // const [allContacts, setContacts] = useState([]);
     const { handleSubmit, handleInput, userRegistration, isValid, isSubmitted } = useDetails(validateDetails, allContacts, setContacts);
     return (
         <>

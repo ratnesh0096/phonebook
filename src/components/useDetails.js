@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validateDetails from "./validateDetails";
 const useDetails = (validateDetails, allContacts, setContacts) => {
+    // const [change, setChange]=useState(0);
     const [userRegistration, setUserRegistration] = useState(
         {
             phone: "",
@@ -27,20 +28,26 @@ const useDetails = (validateDetails, allContacts, setContacts) => {
     const handleInput = (e) => {
         const { name, value } = e.target;
         setUserRegistration({ ...userRegistration, [name]: value })
-        setValidation(validateDetails(userRegistration));
         // console.log(e.target.value);
     }
-    const handleSubmit = (e) => {
-        e.preventDefault();
+
+    useEffect(() => {     
         if (Object.keys(isValid).length === 0) {
             // setSubmisson(true);
             const copiedContacts = [...allContacts];
             copiedContacts.push(userRegistration);
             setContacts(copiedContacts);
+            alert("Contact Succesfully Added");
             // setValidation({});
-            console.log("here");
-
+            // console.log("here");
         }
+
+    }, [isValid])
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setValidation(validateDetails(userRegistration))
+        
         // else setSubmisson(false);
 
         console.log(isValid);
