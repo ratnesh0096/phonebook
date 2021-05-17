@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const AllContacts = ({ allContacts, favourite, setFavourite }) => {
+const AllContacts = ({ allContacts, favourite, setFavourite, setContacts }) => {
     const [searchText, setSearchText] = useState("");
     const copiedContacts = [...allContacts];
-    const [clicked, setClick]=useState(false);
 
     copiedContacts.sort((a, b) => {
         let fa = a.fname.toLowerCase(),
@@ -28,12 +27,15 @@ const AllContacts = ({ allContacts, favourite, setFavourite }) => {
     //     console.log(searchedContact);
     // }, [searchText])
 
-    const handleClick=(contact)=>{
-        console.log(contact);
-        setClick(true);
-        const copiedFavourite=[...favourite];
-        copiedFavourite.push(contact);
-        setFavourite(copiedFavourite);
+    const handleClick=(id)=>{
+        // const copiedAllContacts=[...allContacts];
+        const index=copiedContacts.findIndex((contact)=>contact.id===contact.id);
+        alert(index);
+    //     copiedAllContacts[index].isFavourite=true;
+    //     setContacts(copiedAllContacts);
+    //     const copiedFavourite=[...favourite];
+    //     copiedFavourite.push(contact);
+    //     setFavourite(copiedFavourite);
     }
     return (
         <div>
@@ -50,7 +52,7 @@ const AllContacts = ({ allContacts, favourite, setFavourite }) => {
             {
                 copiedContacts.map((contact) => {
                     return <>
-                        { !searchText && <h4>{contact.phone}
+                        { !searchText && <h4 key={contact.id}>{contact.phone}
                             {contact.fname}
                             {contact.lname}
                             {contact.dob}
@@ -59,7 +61,7 @@ const AllContacts = ({ allContacts, favourite, setFavourite }) => {
                             {contact.designation}
                         </h4>
                         }
-                        {!clicked && <button onClick={()=>handleClick(contact)}>Favourite</button>}
+                        {!contact.isFavourite && <button onClick={()=>handleClick(contact.id)}>Favourite</button>}
                         {/* {clicked && <button onClick={(contact)=>handleClick}>Un-Favourite</button>} */}
                     </>
                 })

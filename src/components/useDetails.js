@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import validateDetails from "./validateDetails";
+import  { Redirect } from 'react-router-dom'
 const useDetails = (validateDetails, allContacts, setContacts) => {
     // const [change, setChange]=useState(0);
     const [userRegistration, setUserRegistration] = useState(
         {
+            id:Date.now(),
             phone: "",
             fname: "",
             lname: "",
             dob: "",
             occupation: "",
             email: "",
-            designation: ""
+            designation: "",
+            isFavourite:false
         }
     );
     const [isValid, setValidation] = useState(
@@ -48,7 +51,7 @@ const useDetails = (validateDetails, allContacts, setContacts) => {
         e.preventDefault();
         setValidation(validateDetails(userRegistration))
         
-        // else setSubmisson(false);
+        return <Redirect to='/all'  />
 
         console.log(isValid);
         console.log(Object.keys(isValid).length);

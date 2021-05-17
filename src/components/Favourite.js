@@ -1,12 +1,20 @@
 import React from 'react';
 
-const Favourite = ({favourite}) => {
+const Favourite = ({ allContacts, favourite, setFavourite, setContacts }) => {
+    const handleClick=(index)=>{
+        const copiedAllContacts=[...allContacts];
+        copiedAllContacts[index].isFavourite=false;
+        setContacts(copiedAllContacts);
+        const copiedFavourite=[...favourite];
+        copiedFavourite.splice(index,1)       
+        setFavourite(copiedFavourite);
+    }
     return (
         <>
             <h1>Favourite</h1>
             <h4>Phone | First Name | Last Name | Date of Birth | Occupation | Email ID |  Designation</h4>
             {
-                favourite.map((contact) => {
+                favourite.map((contact, index) => {
                     return <>
                        <h4>{contact.phone}
                             {contact.fname}
@@ -17,7 +25,7 @@ const Favourite = ({favourite}) => {
                             {contact.designation}
                         </h4>
                         
-                        <button>Un-Favourite</button>
+                        <button onClick={()=>handleClick(index)}>Un-Favourite</button>
                     </>
                 })
             }

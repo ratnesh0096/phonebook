@@ -32,10 +32,10 @@ function App() {
               <Details allContacts={allContacts} setContacts={setContacts} />
             </Route>
             <Route path="/all" exact>
-              <AllContacts allContacts={allContacts} favourite={favourite} setFavourite={setFavourite} />
+              <AllContacts allContacts={allContacts} favourite={favourite} setFavourite={setFavourite} setContacts={setContacts} />
             </Route>
             <Route path="/favourite" exact>
-              <Favourite favourite={favourite} />
+              <Favourite allContacts={allContacts} favourite={favourite} setFavourite={setFavourite} setContacts={setContacts} />
             </Route>
             <Route path="/recent" exact>
               <Recent />
